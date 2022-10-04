@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hotel_recreation/features/core/presentation/bloc_status.dart';
+import 'package:hotel_recreation/core/presentation/bloc_status.dart';
 import 'package:hotel_recreation/features/properties/presentation/list_properties/bloc/list_properties_cubit.dart';
 import 'package:hotel_recreation/features/properties/presentation/widget/error/properties_error_widget.dart';
 import 'package:hotel_recreation/features/properties/presentation/widget/properties/item_properties.dart';

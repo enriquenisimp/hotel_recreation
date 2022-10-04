@@ -2,7 +2,7 @@
 // included in this abstract base class method definition.
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hotel_recreation/features/core/error/failure.dart';
+import 'package:hotel_recreation/core/error/failure.dart';
 
 
 abstract class UseCase<Type, Params> {

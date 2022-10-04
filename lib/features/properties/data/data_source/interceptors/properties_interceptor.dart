@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:hotel_recreation/features/core/data/api_constants.dart';
+import 'package:hotel_recreation/core/data/api_constants.dart';
 
 class PropertiesInterceptor extends Interceptor {
 

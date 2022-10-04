@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hotel_recreation/features/core/domain/usecases/usecase.dart';
-import 'package:hotel_recreation/features/core/error/failure.dart';
-import 'package:hotel_recreation/features/core/presentation/bloc_status.dart';
+import 'package:hotel_recreation/core/domain/usecases/usecase.dart';
+import 'package:hotel_recreation/core/error/failure.dart';
+import 'package:hotel_recreation/core/presentation/bloc_status.dart';
 import 'package:hotel_recreation/features/properties/domain/entities/search_properties.dart';
 import 'package:hotel_recreation/features/properties/domain/usecases/get_list_properties_usecase.dart';
 import 'package:meta/meta.dart';

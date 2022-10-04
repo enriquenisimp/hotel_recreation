@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:hotel_recreation/features/core/data/api_constants.dart';
+import 'package:hotel_recreation/core/data/api_constants.dart';
 import 'package:hotel_recreation/features/properties/data/data_source/interceptors/properties_interceptor.dart';
 import 'package:hotel_recreation/features/properties/data/data_source/properties_remote_data_source.dart';
 import 'package:hotel_recreation/features/properties/data/model/properties_list_wrapper_model.dart';

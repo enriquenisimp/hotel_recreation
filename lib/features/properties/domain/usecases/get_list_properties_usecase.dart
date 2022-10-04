@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:hotel_recreation/features/core/domain/usecases/usecase.dart';
-import 'package:hotel_recreation/features/core/error/failure.dart';
+import 'package:hotel_recreation/core/domain/usecases/usecase.dart';
+import 'package:hotel_recreation/core/error/failure.dart';
 import 'package:hotel_recreation/features/properties/data/repository/properties_repository.dart';
 import 'package:hotel_recreation/features/properties/domain/entities/search_properties.dart';
 import 'package:injectable/injectable.dart';
