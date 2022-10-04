@@ -1,16 +1,19 @@
 # hotel_recreation
 
-Recreational purpose. List of hotels available. USing public API's as DataSource
+Recreational purpose. List of hotels available. Using public API's as DataSource
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is created with Flutter using Clean Architecture, Bloc Pattern (Cubit)
+and Injection.
 
-A few resources to get you started if this is your first Flutter project:
+Domain take the whole control of the app. Presentation is totally independent from Repository. 
+Domain is totally independent from data layer. We only request a abstract repository in order to
+let the data layer choose the way to provide the data and the source of truth. 
+Each domain contain just one action. The file could get bigger depending on the requirement but only
+if it applies to that concrete action.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Bloc get from domain either a success or a failure scenario, bloc only decide how and when tells to
+the UI what to show, and provide the information the UI needs to do it.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+UI is just listen to the states, and print the values that bloc provides.
