@@ -2,7 +2,7 @@
 
 Recreational purpose. List of hotels available. Using public API's as DataSource
 
-## Getting Started
+## Additional information
 
 This project is created with Flutter using Clean Architecture, Bloc Pattern (Cubit)
 and Injection.
