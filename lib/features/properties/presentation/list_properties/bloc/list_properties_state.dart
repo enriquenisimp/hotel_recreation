@@ -19,7 +19,6 @@ class ListPropertiesState extends Equatable{
   const ListPropertiesState.empty(Failure failure):this(status: BaseStatus.empty);
 
   @override
-  // TODO: implement props
   List<Object?> get props => [searchProperties, status, failure];
 
 

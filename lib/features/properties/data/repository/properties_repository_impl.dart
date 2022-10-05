@@ -5,8 +5,8 @@ import 'package:hotel_recreation/features/properties/data/repository/properties_
 import 'package:hotel_recreation/features/properties/domain/entities/search_properties.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as:PropertiesRepository)
-class PropertiesRepositoryImpl extends PropertiesRepository{
+@Injectable(as: PropertiesRepository)
+class PropertiesRepositoryImpl extends PropertiesRepository {
   final PropertiesRemoteDataSource _remoteDataSource;
 
   PropertiesRepositoryImpl(this._remoteDataSource);
@@ -17,15 +17,13 @@ class PropertiesRepositoryImpl extends PropertiesRepository{
   }
 
   @override
-  Future<Either<Failure, SearchProperties>> getListPropertiesRepository(Map<String, dynamic> parameters)async  {
-
+  Future<Either<Failure, SearchProperties>> getListPropertiesRepository(
+      Map<String, dynamic> parameters) async {
     try {
-      print("called1");
-     final model = await _remoteDataSource.getPropertiesListRemote(parameters);
-      print("called2");
-       return Right(model.data.body.searchProperties);
-    }on Exception{
-      return Left(Failure("Server Error"));
+      final model = await _remoteDataSource.getPropertiesListRemote(parameters);
+      return Right(model.data.body.searchProperties);
+    } on Exception catch (e) {
+      return Left(Failure(e.toString()));
     }
   }
 }

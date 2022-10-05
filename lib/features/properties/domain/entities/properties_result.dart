@@ -1,27 +1,29 @@
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:hotel_recreation/features/properties/domain/entities/guest_review.dart';
-
-class PropertiesResult {
+@immutable
+class PropertiesResult extends Equatable{
   final int id;
   final String name;
   final String thumbnailUrl;
   final double? starRating;
   // Address? address;
-  GuestReview guestReviews;
+  final GuestReview guestReviews;
   // TripAdvisorGuestReviews? tripAdvisorGuestReviews;
   // List<Landmarks>? landmarks;
   //RatePlan? ratePlan;
-  String? neighbourhood;
+  final String? neighbourhood;
   // Deals? deals;
   // Messaging? messaging;
   // Badging? badging;
-  String? pimmsAttributes;
-  String? coupon;
+  final String? pimmsAttributes;
+  final String? coupon;
   // Coordinate? coordinate;
-  int? roomsLeft;
-  String? providerType;
-  int? supplierHotelId;
+  final int? roomsLeft;
+  final String? providerType;
+  final int? supplierHotelId;
 
-  PropertiesResult({
+  const PropertiesResult({
     required this.id,
     required this.name,
     required this.thumbnailUrl,
@@ -34,4 +36,7 @@ class PropertiesResult {
     this.providerType,
     this.supplierHotelId,
   });
+
+  @override
+  List<Object?> get props =>[id, name, thumbnailUrl, guestReviews, starRating, neighbourhood, pimmsAttributes, coupon, roomsLeft, providerType, supplierHotelId];
 }

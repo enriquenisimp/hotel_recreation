@@ -2,37 +2,36 @@ import 'package:hotel_recreation/features/properties/data/model/search_result_mo
 import 'package:hotel_recreation/features/properties/domain/entities/search_properties.dart';
 
 class PropertiesListWrapperModel {
-  Data data;
+  final PropertiesListData data;
 
-  PropertiesListWrapperModel({required this.data});
+  const PropertiesListWrapperModel({required this.data});
 
   factory PropertiesListWrapperModel.fromJson(Map<String, dynamic> json) {
     return PropertiesListWrapperModel(
-        data:  Data.fromJson(json['data']));
+        data:  PropertiesListData.fromJson(json['data']));
   }
 }
 
-class Data {
-  Body body;
+class PropertiesListData {
+  final PropertiesListBody body;
 
-  Data({required this.body});
+  const PropertiesListData({required this.body});
 
-  factory Data.fromJson(Map<String, dynamic> json) {
-    return Data(
-        body: Body.fromJson(json['body']));
+  factory PropertiesListData.fromJson(Map<String, dynamic> json) {
+    return PropertiesListData(
+        body: PropertiesListBody.fromJson(json['body']));
   }
 }
 
-class Body {
-  SearchProperties searchProperties;
+class PropertiesListBody {
+  final SearchProperties searchProperties;
 
-  Body({
+  const PropertiesListBody({
    required this.searchProperties,
   });
 
-  factory Body.fromJson(Map<String, dynamic> json) {
-    print("psss");
-    return Body(
+  factory PropertiesListBody.fromJson(Map<String, dynamic> json) {
+    return PropertiesListBody(
         searchProperties: SearchPropertiesModel.fromJson(json['searchResults']));
   }
 }

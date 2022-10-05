@@ -1,11 +1,10 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hotel_recreation/core/domain/usecases/usecase.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_recreation/core/error/failure.dart';
 import 'package:hotel_recreation/core/presentation/bloc_status.dart';
 import 'package:hotel_recreation/features/properties/domain/entities/search_properties.dart';
 import 'package:hotel_recreation/features/properties/domain/usecases/get_list_properties_usecase.dart';
-import 'package:meta/meta.dart';
 
 part 'list_properties_state.dart';
 
@@ -39,7 +38,7 @@ class ListPropertiesCubit extends Cubit<ListPropertiesState> {
         if(properties.totalCount>0) {
           emit(ListPropertiesState.success(properties));
         } else{
-          ListPropertiesState.empty(Failure("Empty list"));
+          emit(const ListPropertiesState.empty(Failure("Empty list")));
         }
       },
     );

@@ -12,7 +12,6 @@ class GetListPropertiesUseCase extends UseCase<SearchProperties, Params>{
   GetListPropertiesUseCase(this._propertiesRepository);
   @override
   Future<Either<Failure, SearchProperties>> call(params) {
-    print("called");
     return _propertiesRepository.getListPropertiesRepository(params.parameters);
   }
 }
