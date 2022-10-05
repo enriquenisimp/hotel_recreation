@@ -16,4 +16,4 @@ if it applies to that concrete action.
 Bloc get from domain either a success or a failure scenario, bloc only decide how and when tells to
 the UI what to show, and provide the information the UI needs to do it.
 
-UI is just listen to the states, and print the values that bloc provides.
+UI is just listening to the states, and printing the values that bloc provides.
