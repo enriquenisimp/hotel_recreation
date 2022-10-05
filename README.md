@@ -17,3 +17,13 @@ Bloc get from domain either a success or a failure scenario, bloc only decides h
 the UI what to show, and provide the information the UI needs to do it.
 
 UI is just listening to the states, and printing the values that bloc provides.
+
+Test Cases created for principal files:
+
+Test Cases powered by Mocktail:
+
+Mock RemoteDataSource in Repository
+Mock Repository in Usecases
+Mock UseCase in Bloc
+
+Bloc_test was added to make cleaner test files in bloc testing.
