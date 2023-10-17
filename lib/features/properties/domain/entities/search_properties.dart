@@ -3,15 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:hotel_recreation/features/properties/domain/entities/properties_result.dart';
 
 @immutable
-class SearchProperties extends Equatable{
-  final int totalCount;
-  final List<PropertiesResult> results;
+class SearchPropertiesEntity extends Equatable{
 
-  const SearchProperties({
+  const SearchPropertiesEntity({
     required this.totalCount,
-    required this.results,
+    required this.listOfProperties,
   });
+  ///Number of properties
+  final int totalCount;
+
+  ///List of properties
+  final List<PropertiesResultEntity> listOfProperties;
 
   @override
-  List<Object?> get props => [totalCount, results];
+  List<Object?> get props => [totalCount, listOfProperties];
 }

@@ -1,26 +1,34 @@
 part of 'list_properties_cubit.dart';
 
-@immutable
-class ListPropertiesState extends Equatable{
-  final SearchProperties? searchProperties;
-  final BaseStatus status;
-  final Failure? failure;
+///Interface state for the list of properties
+///In order to generate a new state it must extend from this one
+abstract class ListPropertiesState extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
+///Initial state of the functionality
+class ListPropertiesInitialState extends ListPropertiesState {}
 
-  const ListPropertiesState({
-    this.searchProperties,
-    required this.status,
-    this.failure
-  });
+///Represent the loading period of the process
+class ListPropertiesLoadingState extends ListPropertiesState {}
 
-  const ListPropertiesState.initial():this(status: BaseStatus.initial);
-  const ListPropertiesState.loading():this(status: BaseStatus.loading);
-  const ListPropertiesState.success(SearchProperties searchProperties):this(status: BaseStatus.success, searchProperties: searchProperties);
-  const ListPropertiesState.error(Failure failure):this(status: BaseStatus.error);
-  const ListPropertiesState.empty(Failure failure):this(status: BaseStatus.empty);
+///It represent the success scenario, it needs the
+///[SearchPropertiesEntity] parameter to access from the widget
+class ListPropertiesSuccessState extends ListPropertiesState {
+
+  ListPropertiesSuccessState(this.searchProperties);
+
+  final SearchPropertiesEntity searchProperties;
 
   @override
-  List<Object?> get props => [searchProperties, status, failure];
-
-
+  List<Object> get props => [searchProperties];
 }
 
+class ListPropertiesErrorState extends ListPropertiesState {
+
+  ListPropertiesErrorState(this.failure);
+  final Failure failure;
+
+  @override
+  List<Object> get props => [failure];
+}

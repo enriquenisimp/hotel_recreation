@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 
+///Default widget to show a gentle error to the user
 class PropertiesErrorWidget extends StatelessWidget {
-  const PropertiesErrorWidget({Key? key, required this.title}) : super(key: key);
+
+  const PropertiesErrorWidget({
+    required this.title,
+    super.key,
+  });
+
+  ///Message that the user will read to understand the error/warning
   final String title;
+
   @override
   Widget build(BuildContext context) {
     return Center(

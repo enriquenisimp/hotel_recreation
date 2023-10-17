@@ -3,8 +3,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hotel_recreation/core/error/exceptions.dart';
 import 'package:hotel_recreation/core/error/failure.dart';
-import 'package:hotel_recreation/core/presentation/bloc_status.dart';
-import 'package:hotel_recreation/features/properties/data/repository/properties_repository.dart';
 import 'package:hotel_recreation/features/properties/domain/entities/guest_review.dart';
 import 'package:hotel_recreation/features/properties/domain/entities/properties_result.dart';
 import 'package:hotel_recreation/features/properties/domain/entities/search_properties.dart';
@@ -26,88 +24,97 @@ void main() {
     registerFallbackValue(FakeParams());
   });
 
-  blocTest(
-      'if GetListPropertiesUseCase return a Failure, Cubit should emit a error scenario ',
-      build: () {
-        when(() => useCase(any())).thenAnswer(
-          (invocation) => Future.value(
-            Left(
-              Failure(ServerException().toString()),
-            ),
-          ),
-        );
-        return listPropertiesCubit;
-      },
-      act: (ListPropertiesCubit bloc) => bloc.getListProperties(),
-      expect: () => [
-            ListPropertiesState.error(
-              Failure(ServerException().toString()),
-            ),
-          ]);
-
-  blocTest(
-      'if GetListPropertiesUseCase '
-          'return a Searchproperties but empty, Cubit should emit a empty scenario',
-      build: () {
-        when(() => useCase(any())).thenAnswer(
-              (invocation) => Future.value(
-            const Right(
-              SearchProperties(
-                totalCount: 0,
-                results: [],
-              ),
-            ),
-          ),
-        );
-        return listPropertiesCubit;
-      },
-      act: (ListPropertiesCubit bloc) => bloc.getListProperties(),
-      expect: () => [
-        const ListPropertiesState.empty(
-          Failure(
-            "Empty list"
+  blocTest<ListPropertiesCubit, ListPropertiesState>(
+    'if GetListPropertiesUseCase return a Failure, '
+    'Cubit should emit a error scenario ',
+    build: () {
+      when(() => useCase(any())).thenAnswer(
+        (invocation) => Future.value(
+          Left(
+            Failure(ServerException().toString()),
           ),
         ),
-      ]);
+      );
+      return listPropertiesCubit;
+    },
+    act: (ListPropertiesCubit bloc) => bloc.getListProperties(),
+    expect: () => [
+      ListPropertiesErrorState(
+        Failure(ServerException().toString()),
+      ),
+    ],
+  );
 
-
-  blocTest(
-      'if GetListPropertiesUseCase '
-      'return a Searchproperties, Cubit should emit a success scenario ',
-      build: () {
-        when(() => useCase(any())).thenAnswer(
-          (invocation) => Future.value(
-            const Right(
-              SearchProperties(
-                totalCount: 1,
-                results: [
-                  PropertiesResult(
-                      id: 1,
-                      name: "name",
-                      thumbnailUrl: "thumbnailUrl",
-                      guestReviews:
-                          GuestReview(rating: "12", totalReviews: 122))
-                ],
-              ),
+  blocTest<ListPropertiesCubit, ListPropertiesState>(
+    'if GetListPropertiesUseCase '
+    'return a SearchProperties but empty, Cubit should emit a empty scenario',
+    build: () {
+      when(() => useCase(any())).thenAnswer(
+        (invocation) => Future.value(
+          const Right(
+            SearchPropertiesEntity(
+              totalCount: 0,
+              listOfProperties: [],
             ),
           ),
-        );
-        return listPropertiesCubit;
-      },
-      act: (ListPropertiesCubit bloc) => bloc.getListProperties(),
-      expect: () => [
-            const ListPropertiesState.success(
-              SearchProperties(
-                totalCount: 1,
-                results: [
-                  PropertiesResult(
-                      id: 1,
-                      name: "name",
-                      thumbnailUrl: "thumbnailUrl",
-                      guestReviews:
-                          GuestReview(rating: "12", totalReviews: 122))
-                ],
-              ),
+        ),
+      );
+      return listPropertiesCubit;
+    },
+    act: (ListPropertiesCubit bloc) => bloc.getListProperties(),
+    expect: () => [
+      ListPropertiesErrorState(
+        const Failure(
+          'Empty list',
+        ),
+      ),
+    ],
+  );
+
+  blocTest<ListPropertiesCubit, ListPropertiesState>(
+    'if GetListPropertiesUseCase '
+    'return a SearchProperties, Cubit should emit a success scenario ',
+    build: () {
+      when(() => useCase(any())).thenAnswer(
+        (invocation) => Future.value(
+          const Right(
+            SearchPropertiesEntity(
+              totalCount: 1,
+              listOfProperties: [
+                PropertiesResultEntity(
+                  id: 1,
+                  name: 'name',
+                  thumbnailUrl: 'thumbnailUrl',
+                  guestReviews: GuestReviewEntity(
+                    rating: '12',
+                    totalReviews: 122,
+                  ),
+                ),
+              ],
             ),
-          ]);
+          ),
+        ),
+      );
+      return listPropertiesCubit;
+    },
+    act: (ListPropertiesCubit bloc) => bloc.getListProperties(),
+    expect: () => [
+      ListPropertiesSuccessState(
+        const SearchPropertiesEntity(
+          totalCount: 1,
+          listOfProperties: [
+            PropertiesResultEntity(
+              id: 1,
+              name: 'name',
+              thumbnailUrl: 'thumbnailUrl',
+              guestReviews: GuestReviewEntity(
+                rating: '12',
+                totalReviews: 122,
+              ),
+            )
+          ],
+        ),
+      ),
+    ],
+  );
 }
